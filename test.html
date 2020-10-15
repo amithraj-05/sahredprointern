@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Sharedpro</title>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+</head>
+<body>
+    <header class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <h1>SHAREDPRO</h1>
+      </div>
+    </div>
+  </header>
+  <div class="container box">
+    <h1>REGISTER</h1>
+    <form id="registration_form">
+      <!--First name-->
+      <div>
+        <input type="text" id="form_fname" name="" required="">
+        <span class="error_form" id="fname_error_message"></span>
+        <label>
+          First Name
+        </label>  
+      </div>
+      <!--Last name-->
+      <div>
+        <input type="text" id="form_sname" name="" required="">
+        <span class="error_form" id="sname_error_message"></span>
+        <label>
+          Last Name
+        </label>  
+      </div>
+      <!--Phone number-->
+      <div>
+        <input type="tel" id="form_pnum" name="" required="">
+        <span class="error_form" id="pnum_error_message"></span>
+        <label>
+          Phone Number
+        </label>  
+      </div> 
+      <!--Email address-->     
+      <div>
+        <input type="email" id="form_email" name="" required="">
+        <span class="error_form" id="email_error_message"></span>
+        <label>Email address</label> 
+      </div>
+      <!--Password-->
+      <div>
+        <input type="password" id="form_password" name="" required="">
+        <span class="error_form" id="password_error_message"></span>
+        <label>Password</label> 
+      </div>
+
+      <input type="submit" value="Register" name="">
+    </form>
+  </div>
+  <script type="text/javascript">
+      $(function() {
+
+         $("#fname_error_message").hide();
+         $("#sname_error_message").hide();
+         $("#pnum_error_message").hide();
+         $("#email_error_message").hide();
+         $("#password_error_message").hide();
+         
+
+         var error_fname = false;
+         var error_sname = false;
+         var error_pnum = false;
+         var error_email = false;
+         var error_password = false;
+         
+
+         $("#form_fname").focusout(function(){
+            check_fname();
+         });
+         $("#form_sname").focusout(function() {
+            check_sname();
+         });
+         $("#form_pnum").focusout(function() {
+            check_pnum();
+         });         
+         $("#form_email").focusout(function() {
+            check_email();
+         });
+         $("#form_password").focusout(function() {
+            check_password();
+         });
+
+         function check_fname() {
+            var pattern = /^[a-zA-Z]*$/;
+            var fname = $("#form_fname").val();
+            if (pattern.test(fname) && fname !== '') {
+               $("#fname_error_message").hide();
+               $("#form_fname").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#fname_error_message").html("Should contain only Characters");
+               $("#fname_error_message").show();
+               $("#form_fname").css("border-bottom","2px solid #F90A0A");
+               error_fname = true;
+            }
+         }
+
+         function check_sname() {
+            var pattern = /^[a-zA-Z]*$/;
+            var sname = $("#form_sname").val()
+            if (pattern.test(sname) && sname !== '') {
+               $("#sname_error_message").hide();
+               $("#form_sname").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#sname_error_message").html("Should contain only Characters");
+               $("#sname_error_message").show();
+               $("#form_sname").css("border-bottom","2px solid #F90A0A");
+               error_fname = true;
+            }
+         }
+
+         function check_pnum() {
+            var pattern = /^[0-9]{10}$/;
+            var pnum = $("#form_pnum").val()
+            if (pattern.test(pnum) && pnum !== '') {
+               $("#pnum_error_message").hide();
+               $("#form_pnum").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#pnum_error_message").html("Should contain only numbers");
+               $("#pnum_error_message").show();
+               $("#form_pnum").css("border-bottom","2px solid #F90A0A");
+               error_pnum = true;
+            }
+         }
+
+         function check_email() {
+            var pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            var email = $("#form_email").val();
+            if (pattern.test(email) && email !== '') {
+               $("#email_error_message").hide();
+               $("#form_email").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#email_error_message").html("Invalid Email");
+               $("#email_error_message").show();
+               $("#form_email").css("border-bottom","2px solid #F90A0A");
+               error_email = true;
+            }
+         }                  
+
+         function check_password() {
+            var password_length = $("#form_password").val().length;
+            if (password_length < 8) {
+               $("#password_error_message").html("Atleast 8 Characters");
+               $("#password_error_message").show();
+               $("#form_password").css("border-bottom","2px solid #F90A0A");
+               error_password = true;
+            } else {
+               $("#password_error_message").hide();
+               $("#form_password").css("border-bottom","2px solid #34F458");
+            }
+         }
+
+
+         $("#registration_form").submit(function() {
+            error_fname = false;
+            error_sname = false;
+            error_email = false;
+            error_password = false;
+
+            check_fname();
+            check_sname();
+            check_email();
+            check_password();
+
+
+            if (error_fname === false && error_sname === false && error_email === false && error_password === false) {
+               alert("Registration Successfull");
+               return true;
+            } else {
+               alert("Please Fill the form Correctly");
+               return false;
+            }
+
+
+         });
+      });
+   </script>
+</body>
+</html>
